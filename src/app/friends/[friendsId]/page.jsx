@@ -11,7 +11,7 @@ const statusStyles = {
 
 // Data fetching logic
 const friendsPromise = async () => {
-    const res = await fetch("http://localhost:3001/friends.json", { cache: 'no-store' });
+    const res = await fetch("http://localhost:3000/friends.json", { cache: 'no-store' });
     if (!res.ok) return [];
     return res.json();
 };
