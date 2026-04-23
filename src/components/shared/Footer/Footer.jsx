@@ -39,7 +39,7 @@ const Footer = () => {
                     <a href="#" className="w-9 h-9 flex items-center justify-center rounded-full bg-white text-[#276749] hover:bg-gray-200 transition">
                         <FaXTwitter size={14} />
                     </a>
-                    
+
                 </div>
 
                 {/* Divider */}
