@@ -11,7 +11,7 @@ const VideoButton = ({ friend }) => {
 
     const handleVideoCall = () => {
         setVideoCallList([...videoCallList, friend]);
-        toast.success(`Video calling ${friend.name} 📞`);
+        toast.success(`Video with ${friend.name} 🎥`);
     };
 
     return (

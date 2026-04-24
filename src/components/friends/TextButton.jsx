@@ -11,7 +11,7 @@ const TextButton = ({ friend }) => {
 
     const handleText = () => {
         setTextList([...textList, friend]);
-        toast.success(`Texting ${friend.name} 📞`);
+        toast.success(`Text with ${friend.name} 💬`);
     };
 
     return (

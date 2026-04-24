@@ -11,7 +11,7 @@ const CallButton = ({ friend }) => {
 
     const handleCallNow = () => {
         setCalledList([...calledList, friend]);
-        toast.success(`Calling ${friend.name} 📞`);
+        toast.success(`Call with ${friend.name} 📞`);
     };
 
     return (
