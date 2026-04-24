@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
-import { Phone, MessageSquare, Video, BellOff, Archive, Trash2 } from 'lucide-react';
+import { BellOff, Archive, Trash2 } from 'lucide-react';
+import CallButton from '@/components/friends/CallButton';
+import TextButton from '@/components/friends/TextButton';
+import VideoButton from '@/components/friends/VideoButton';
 
 // Status styles mapping
 const statusStyles = {
@@ -15,6 +18,23 @@ const friendsPromise = async () => {
     if (!res.ok) return [];
     return res.json();
 };
+
+export async function generateMetadata({ params }) {
+    const { friendsId } = await params;
+    const friends = await friendsPromise();
+    const friend = friends.find((friend) => String(friend.id) === friendsId);
+
+    if (!friend) {
+        return {
+            title: `Not found | KeenKeeper`,
+        };
+    }
+
+    return {
+        title: `${friend.name} | KeenKeeper`,
+        description: friend.bio,
+    };
+}
 
 const FriendsDetailPage = async ({ params }) => {
     const { friendsId } = await params;
@@ -137,20 +157,11 @@ const FriendsDetailPage = async ({ params }) => {
                     <div className="bg-white rounded-lg p-6 border border-slate-100 shadow-sm">
                         <h3 className="text-xl font-medium text-[#244D3F] mb-4">Quick Check-In</h3>
                         <div className="grid grid-cols-3 gap-4">
-                            <button className="group flex flex-col items-center justify-center gap-2 border border-slate-100 bg-slate-50/50 rounded-lg p-4 transition-all hover:border-indigo-200 hover:bg-indigo-50/30 cursor-pointer">
-                                <Phone size={32} className="group-hover:text-indigo-600" />
-                                <span className="text-lg group-hover:text-indigo-700">Call</span>
-                            </button>
+                            <CallButton friend={friend}></CallButton>
 
-                            <button className="group flex flex-col items-center justify-center gap-2 border border-slate-100 bg-slate-50/50 rounded-lg p-4 transition-all hover:border-indigo-200 hover:bg-indigo-50/30 cursor-pointer">
-                                <MessageSquare size={32} className="group-hover:text-indigo-600" />
-                                <span className="text-lg group-hover:text-indigo-700">Text</span>
-                            </button>
+                            <TextButton friend={friend}></TextButton>
 
-                            <button className="group flex flex-col items-center justify-center gap-2 border border-slate-100 bg-slate-50/50 rounded-lg p-4 transition-all hover:border-indigo-200 hover:bg-indigo-50/30 cursor-pointer">
-                                <Video size={32} className="group-hover:text-indigo-600" />
-                                <span className="text-lg group-hover:text-indigo-700">Video</span>
-                            </button>
+                            <VideoButton friend={friend}></VideoButton>
                         </div>
                     </div>
                 </div>
