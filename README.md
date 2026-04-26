@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🤝 KeenKeeper - Personal Connection Tracker
 
-## Getting Started
+KeenKeeper is a streamlined web application designed to help users maintain and nurture their relationships. By tracking interactions like calls, texts, and meetups, KeenKeeper provides users with a visual "timeline" of their social life and analytics to see who they are connecting with most.
 
-First, run the development server:
+Built as part of **Assignment 07 (Batch 13)**, this project focuses on state management, data persistence, and modern UI/UX principles.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌟 Key Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* **Interaction Tracking:** Easily log every time you call, text, or video chat with a friend.
+* **Friendship Analytics:** Beautifully rendered **Pie Charts** (via Recharts) that break down your interaction types by percentage.
+* **Persistent Timeline:** A filterable history of all past interactions. Even if you refresh the page, your data stays safe thanks to **LocalStorage** synchronization.
+* **Dynamic Filtering:** Filter your timeline by "Calls," "Texts," or "Videos" to find specific moments quickly.
+* **Modern Design:** A clean, minimal interface built with **Tailwind CSS v4** and **Lucide React** icons.
+* **Zero Data Loss:** Custom hooks and Context API logic handle hydration to ensure a smooth, error-free experience on page reloads.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Live Demo
 
-To learn more about Next.js, take a look at the following resources:
+https://b13-assignment-07-chi.vercel.app/
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ The Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* **Core:** [Next.js 15](https://nextjs.org/) (App Router)
+* **Language:** JavaScript (ES6+)
+* **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+* **Visuals:** [Recharts](https://recharts.org/) for data visualization
+* **Icons:** [Lucide React](https://lucide.dev/)
+* **Notifications:** [React Toastify](https://fkhadra.github.io/react-toastify/)
+* **State Management:** React Context API
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🏗️ Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+├── src
+│   ├── app            # Next.js pages & layout logic
+│   ├── components     # Modular UI elements (Navbar, Footer, Charts)
+│   ├── context        # Global state management (Call, Text, Video Contexts)
+│   ├── lib            # Context providers & library configs
+│   └── styles         # Tailwind globals
