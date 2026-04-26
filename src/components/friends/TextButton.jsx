@@ -7,10 +7,15 @@ import { MessageSquare } from 'lucide-react';
 
 const TextButton = ({ friend }) => {
 
-    const { textList, setTextList } = useContext(TextContext);
+    const { textList, setTextList, addInteraction } = useContext(TextContext);
 
     const handleText = () => {
         setTextList([...textList, friend]);
+
+        if (addInteraction) {
+            addInteraction(friend, "Text");
+        }
+
         toast.success(`Text with ${friend.name} 💬`);
     };
 

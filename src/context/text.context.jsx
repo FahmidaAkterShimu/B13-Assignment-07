@@ -7,7 +7,7 @@ const TextProvider = ({ children }) => {
     const [textList, setTextList] = useState([]);
 
     return (
-        <TextContext.Provider value={{ textList, setTextList }}>
+        <TextContext.Provider value={{ textList, setTextList, timelineHistory, addInteraction }}>
             {children}
         </TextContext.Provider>
     );

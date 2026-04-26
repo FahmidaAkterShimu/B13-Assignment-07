@@ -33,7 +33,7 @@ const FriendshipAnalytics = () => {
   const hasData = data.some(item => item.value > 0);
 
   return (
-    <div className="max-w-277.5 min-h-screen mx-auto mt-20 px-4">
+    <div className="max-w-277.5 min-h-screen mx-auto my-20 px-4">
       <h2 className="text-5xl font-bold text-[#1F2937] mb-6 font-sans">Friendship Analytics</h2>
 
       <div className="bg-white p-8 rounded-lg shadow-sm border border-slate-100">

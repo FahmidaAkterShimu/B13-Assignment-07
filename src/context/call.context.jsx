@@ -7,7 +7,7 @@ const CallProvider = ({ children }) => {
     const [calledList, setCalledList] = useState([]);
 
     return (
-        <CallContext.Provider value={{ calledList, setCalledList }}>
+        <CallContext.Provider value={{ calledList, setCalledList, timelineHistory, addInteraction }}>
             {children}
         </CallContext.Provider>
     );

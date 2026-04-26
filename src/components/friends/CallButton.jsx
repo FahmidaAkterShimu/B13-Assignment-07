@@ -7,10 +7,15 @@ import { Phone } from 'lucide-react';
 
 const CallButton = ({ friend }) => {
 
-    const { calledList, setCalledList } = useContext(CallContext);
+    const { calledList, setCalledList, addInteraction } = useContext(CallContext);
 
     const handleCallNow = () => {
         setCalledList([...calledList, friend]);
+
+        if (addInteraction) {
+            addInteraction(friend, "Call");
+        }
+
         toast.success(`Call with ${friend.name} 📞`);
     };
 

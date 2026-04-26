@@ -7,10 +7,15 @@ import { Video } from 'lucide-react';
 
 const VideoButton = ({ friend }) => {
 
-    const { videoCallList, setVideoCallList } = useContext(VideoContext);
+    const { videoCallList, setVideoCallList, addInteraction } = useContext(VideoContext);
 
     const handleVideoCall = () => {
         setVideoCallList([...videoCallList, friend]);
+
+        if (addInteraction) {
+            addInteraction(friend, "Video");
+        }
+
         toast.success(`Video with ${friend.name} 🎥`);
     };
 

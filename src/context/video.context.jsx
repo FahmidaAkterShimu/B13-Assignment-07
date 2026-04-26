@@ -7,7 +7,7 @@ const VideoProvider = ({ children }) => {
     const [videoCallList, setVideoCallList] = useState([]);
 
     return (
-        <VideoContext.Provider value={{ videoCallList, setVideoCallList }}>
+        <VideoContext.Provider value={{ videoCallList, setVideoCallList, timelineHistory, addInteraction }}>
             {children}
         </VideoContext.Provider>
     );
