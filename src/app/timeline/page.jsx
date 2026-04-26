@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CallContext } from '@/context/AllContext';
 import { Phone, MessageSquare, Video, Users, ChevronDown } from 'lucide-react';
 
@@ -13,30 +13,42 @@ const iconMap = {
 
 const Timeline = () => {
   const { timelineHistory } = useContext(CallContext);
-
   const [filterType, setFilterType] = useState('All');
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const filteredTimeline = (timelineHistory || []).filter((item) => {
     if (filterType === 'All') return true;
     return item.type === filterType;
   });
 
+  if (!isMounted) {
+    return null;
+  }
+
   return (
-    <div className='bg-[#F8FAFC] py-20'>
-      <div className="max-w-277.5 mx-auto min-h-screen px-4 space-y-4">
+    <div className='py-20'>
+      <div className="max-w-277.5 mx-auto px-4 space-y-4">
         <h1 className="text-left text-5xl font-bold text-[#1F2937] mb-6">Timeline</h1>
 
         <div className="relative inline-block mb-6">
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
-            className="bg-[#F8FAFC] border border-[#E9E9E9] rounded-lg px-6 py-4 pr-20 text-[#64748B] text-lg font-medium focus:outline-none focus:ring-2 focus:ring-[#244D3F]/50 cursor-pointer shadow-sm"
+            className="bg-[#F8FAFC] border border-[#E9E9E9] rounded-lg px-6 py-4 pr-20 text-[#64748B] text-lg font-medium focus:outline-none focus:ring-2 focus:ring-[#244D3F]/50 cursor-pointer shadow-sm appearance-none"
           >
             <option value="All" className='text-lg text-[#64748B]'>Filter Timeline</option>
             <option value="Call">Calls</option>
             <option value="Text">Texts</option>
             <option value="Video">Videos</option>
           </select>
+
+          <div className="absolute inset-y-0 right-6 flex items-center pointer-events-none">
+            <ChevronDown size={24} className="text-[#64748B]" />
+          </div>
         </div>
 
         {/* History List */}
@@ -46,7 +58,7 @@ const Timeline = () => {
           </p>
         ) : (
           filteredTimeline.map((item) => (
-            <div key={item.id} className="flex items-center p-4 bg-white rounded-lg border border-[#E9E9E9] hover:shadow-sm transition-shadow">
+            <div key={item.id} className="flex items-center p-4 bg-white rounded-lg border border-[#E9E9E9] hover:shadow-sm transition-all duration-300">
 
               <div className="w-12 h-12 flex items-center justify-center bg-[#d4e4df] rounded-full">
                 {iconMap[item.type] || <Users className="text-[#244D3F]" />}

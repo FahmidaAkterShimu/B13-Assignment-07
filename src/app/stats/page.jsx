@@ -3,7 +3,7 @@ import FriendshipAnalytics from '../dashboard/page';
 
 const StatsPage = () => {
     return (
-        <div className='bg-[#F8FAFC]'>
+        <div>
             <FriendshipAnalytics></FriendshipAnalytics>
         </div>
     );
