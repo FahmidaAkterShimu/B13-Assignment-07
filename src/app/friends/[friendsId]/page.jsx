@@ -14,7 +14,7 @@ const statusStyles = {
 
 // Data fetching logic
 const friendsPromise = async () => {
-    const res = await fetch("http://localhost:3000/friends.json", { cache: 'no-store' });
+    const res = await fetch("https://b13-assignment-07-chi.vercel.app//friends.json", { cache: 'no-store' });
     if (!res.ok) return [];
     return res.json();
 };
