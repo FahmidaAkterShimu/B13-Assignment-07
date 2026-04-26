@@ -1,36 +1,42 @@
 "use client";
-import React, { useContext } from "react";
-import { Legend, Pie, PieChart, ResponsiveContainer, Cell, Tooltip } from "recharts";
 
-// context import
+import React, { useContext, useEffect, useState } from "react";
+import { Legend, Pie, PieChart, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import { CallContext, TextContext, VideoContext } from "@/context/AllContext";
 
 const FriendshipAnalytics = () => {
-  // Context theke data access
   const { calledList } = useContext(CallContext);
   const { textList } = useContext(TextContext);
   const { videoCallList } = useContext(VideoContext);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Serial: Text (1st), Call (2nd), Video (3rd)
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const data = [
     {
       name: "Text",
       value: textList?.length || 0,
-      color: "#7E35E1" // Purple
+      color: "#7E35E1"
     },
     {
       name: "Call",
       value: calledList?.length || 0,
-      color: "#244D3F" // Dark Green
+      color: "#244D3F"
     },
     {
       name: "Video",
       value: videoCallList?.length || 0,
-      color: "#37A163" // Green
+      color: "#37A163"
     },
   ];
 
   const hasData = data.some(item => item.value > 0);
+
+  if (!isMounted) {
+    return null; 
+  }
 
   return (
     <div className="max-w-277.5 min-h-screen mx-auto my-20 px-4">
@@ -38,7 +44,6 @@ const FriendshipAnalytics = () => {
 
       <div className="bg-white p-8 rounded-lg shadow-sm border border-slate-100">
         <p className="mb-6 text-left text-xl font-medium text-[#244D3F]">By Interaction Type</p>
-
 
         <div className="flex justify-center items-center h-80 w-full">
           {hasData ? (
@@ -53,6 +58,8 @@ const FriendshipAnalytics = () => {
                   paddingAngle={6}
                   cornerRadius={6}
                   dataKey="value"
+                  animationBegin={0}
+                  animationDuration={1000}
                 >
                   {data.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
@@ -73,7 +80,7 @@ const FriendshipAnalytics = () => {
               </PieChart>
             </ResponsiveContainer>
           ) : (
-            <div className="text-2xl text-[#244D3F] font-medium italic">
+            <div className="text-2xl text-[#244D3F] font-medium italic opacity-60">
               No interaction data available yet.
             </div>
           )}
